@@ -19,5 +19,6 @@
             </div>
         </div>
     </div>
+    <a href="{{route('product.index')}}" class="btn btn-primary w-25 ms-auto mt-5">View Products</a>
 </div>
 @endsection

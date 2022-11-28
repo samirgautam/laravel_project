@@ -27,6 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+       
         return view('product.create'); 
     }
 
@@ -49,13 +50,19 @@ class ProductController extends Controller
 
         // $data->save();
         // return redirect()->route('product.index');
+        $request->validate([
+            "pName"=>"required|string",
+            "quantity"=>"required|numeric",
+            "rate"=>"required|numeric",
+            "discount"=>"required|numeric",
+        ]);
         $product = Product::create(
             [
                 "pName"=> $request->pName,
                 "quantity" =>$request->quantity,
                 "rate"=> $request->rate,
                 "discount"=>$request->discount,
-                "user_id"=>Auth::id()
+                "user_id"=>Auth::id(),
             ]
             );
             if(!$product)
@@ -110,7 +117,7 @@ class ProductController extends Controller
         {
             return back()->with("error","error message");
         }
-        return redirect()->route("product.index")->with("success","Product updatedSuccessfully");
+        return redirect()->route("product.index")->with("success","Product updated Successfully");
     }
 
     /**
