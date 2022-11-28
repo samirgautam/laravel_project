@@ -15,7 +15,7 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/", [\App\Http\Controllers\HomeController::class , "index" ]);
+Route::get("/home", [\App\Http\Controllers\HomeController::class , "index" ])->name('home');
 // Route::get("/save",[\App\Http\Controllers\HomeController::class , "save"]);
 Auth::routes();
 // Route::get('/',[ProductController::class, 'index'])->name('product.index');

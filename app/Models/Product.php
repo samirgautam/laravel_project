@@ -13,7 +13,8 @@ class Product extends Model
         'pName',
         'quantity',
         'rate',
-        'discount'
+        'discount',
+        'user_id'
     ];
 
   static public function getData($status){

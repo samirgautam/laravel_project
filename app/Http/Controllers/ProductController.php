@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -53,7 +54,8 @@ class ProductController extends Controller
                 "pName"=> $request->pName,
                 "quantity" =>$request->quantity,
                 "rate"=> $request->rate,
-                "discount"=>$request->discount
+                "discount"=>$request->discount,
+                "user_id"=>Auth::id()
             ]
             );
             if(!$product)
@@ -101,7 +103,8 @@ class ProductController extends Controller
             "pName"=> $request->pName,
             "quantity" =>$request->quantity,
             "rate"=> $request->rate,
-            "discount"=>$request->discount
+            "discount"=>$request->discount,
+      
         ]);
         if(!$product)
         {
