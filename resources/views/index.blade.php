@@ -1,37 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layouts.app')
+@section('content')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Bluefox</title>
-</head>
-<body>
-   
-<form class="container-fluid" action="/save">
 
-<div class="row">
-  <div class="col-sm"></div>
-  <div class="col-sm">
-    <label for="firstName"> First name:</label><br>
-  <input name="firstName" type="text" placeholder="First Name"><br>
-  <label for="lastName"> Last name:</label><br>
-  <input type="text" name="lastName" placeholder="Last Name"> <br>
-  <label for="mobileNo"> Mobile No:</label><br> 
-  <input type="number" name="mobileNo"  placeholder="Phone Number"> <br><br>
-<button type="submit" class="btn btn-primary">Submit</button>
+<div class="container">
+@if(Session::has("success"))
+  <div class="alert alert-success">
+    {{Session::get("success")}}
   </div>
+@endif
 
-  <div class="col-sm"></div>
-  
+<div class="card card-body border-0 shadow mb-3">
+
+<h5>List of Products</h5>
+
+<a href="{{route('home')}}" class="btn btn-primary w-25 ms-auto mb-5">Go To Dashboard</a>
+
+<a href="{{route('product.create')}}" class="btn btn-primary w-25 ms-auto mb-5">Insert Product</a>
+
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Net Amount</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @php
+        $i =0;
+    @endphp
+    @foreach ($products as $product)
+    <tr>
+      <th scope="row">{{++$i}}</th>
+      <td>{{ucfirst($product->pName)}}</td>
+      <td>{{$product->quantity}}</td>
+      <td>{{$product->rate}}</td>
+      <td>{{$product->discount}}</td>
+      {{-- <td>{{number_format($product->quantity*($product->rate-$product->discount),2)}}</td>
+       --}}
+       <td>{{number_format($product->rate - ($product->discount * $product->rate)/100,2)}}</td>
+      <td>{{$product->user->name}}</td>
+
+      
+
+      <td class="d-flex justify-content-around">
+        <form action="{{route('product.edit',$product->id)}}">
+          @csrf
+          <td> <button type="submit" class="btn btn-info" >Edit</button></td>
+        </form>
+
+        <form method="POST" action="{{route('product.delete',$product->id)}}">
+          @csrf
+          <td><button type="submit" class="btn btn-danger">Delete</button></td>
+        </form>
+
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+
 </div>
- 
- 
-</form>
-</body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</html>
+</div>
+
+
+
+
+
+
+@endsection

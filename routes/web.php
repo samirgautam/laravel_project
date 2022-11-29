@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,10 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get("/", [\App\Http\Controllers\ProductController::class , "home" ])->name('product.home');
 Route::get("/home", [\App\Http\Controllers\HomeController::class , "index" ])->name('home');
+
 // Route::get("/save",[\App\Http\Controllers\HomeController::class , "save"]);
 Auth::routes();
 // Route::get('/',[ProductController::class, 'index'])->name('product.index');

@@ -21,7 +21,7 @@ class Product extends Model
     public function user(){
         return $this->belongsTo(User::class);
      }
-     static public function getData($status){
+    static public function getData($status){
 
         return self::where('is_active',$status)->with('user')->get();
     }

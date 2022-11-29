@@ -1,6 +1,6 @@
-  
   @extends('layouts.app')
   @section('content')
+
  
 <div class="container">
 @if(Session::has("success"))
@@ -12,6 +12,7 @@
 <div class="card card-body border-0 shadow mb-3">
   
   <h5>List of Products</h5>
+
 <a href="{{route('home')}}" class="btn btn-primary w-25 ms-auto mb-5">Go To Dashboard</a>
 
 <a href="{{route('product.create')}}" class="btn btn-primary w-25 ms-auto mb-5">Insert Product</a>

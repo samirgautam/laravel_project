@@ -82,7 +82,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+    //    
     }
 
     /**
@@ -134,4 +134,9 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route("product.index")->with("success","Product deleted successfully");
     }
+
+    public function home(){
+        return view('product.home',["products"=>Product::all()]);  
+      
+    }  
 }
