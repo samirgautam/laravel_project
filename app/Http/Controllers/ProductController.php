@@ -15,6 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // return Product::getData(true);
         return view('product.index',["products"=>Product::getData(true)]);
 
         // return Product::all(); //returns everything from the Product model

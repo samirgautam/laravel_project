@@ -17,9 +17,13 @@ class Product extends Model
         'user_id'
     ];
 
-  static public function getData($status){
 
-        return self::where('is_active',$status)->get();
+    public function user(){
+        return $this->belongsTo(User::class);
+     }
+     static public function getData($status){
+
+        return self::where('is_active',$status)->with('user')->get();
     }
 
 }

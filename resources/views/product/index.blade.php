@@ -1,3 +1,4 @@
+  
   @extends('layouts.app')
   @section('content')
  
@@ -23,6 +24,8 @@
         <th scope="col">Quantity</th>
         <th scope="col">Rate</th>
         <th scope="col">Discount</th>
+        <th scope="col">Net Amount</th>
+        <th scope="col">Created By</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -34,10 +37,17 @@
       @foreach ($products as $product)
       <tr>
         <th scope="row">{{++$i}}</th>
-        <td>{{$product->pName}}</td>
+        <td>{{ucfirst($product->pName)}}</td>
         <td>{{$product->quantity}}</td>
         <td>{{$product->rate}}</td>
         <td>{{$product->discount}}</td>
+        {{-- <td>{{number_format($product->quantity*($product->rate-$product->discount),2)}}</td>
+         --}}
+         <td>{{number_format($product->rate - ($product->discount * $product->rate)/100,2)}}</td>
+        <td>{{$product->user->name}}</td>
+
+        
+
         <td class="d-flex justify-content-around">
           <form action="{{route('product.edit',$product->id)}}">
             @csrf
