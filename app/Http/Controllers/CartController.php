@@ -31,7 +31,8 @@ class CartController extends Controller
     }
     public function index()
     {
-        return Cart::where('user_id',Auth::id())->with('product')->get();
+        return view('cart.index',["cart_items"=>Cart::where('user_id',Auth::id())->with('product')->get()]);
+         
         // return view('cart.index',["products"=>Product::getData(true)]);
     }
 
@@ -96,8 +97,12 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id)
     {
-        //
+
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return redirect()->route("cart.index")->with("success","Product deleted successfully");
     }
+
 }

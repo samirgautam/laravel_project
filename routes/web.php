@@ -45,3 +45,4 @@ Route::get("/cart",[CartController::class,'index'])->name('cart.index')->middlew
 
 
 Route::get("/create",[CartController::class,'create'])->name('cart.create')->middleware('auth');
+Route::get("/cart/delete/{id}",[CartController::class,'destroy'])->name('cart.delete')->middleware('auth');
