@@ -17,7 +17,6 @@ class CartController extends Controller
      */
     public function addToCart($id){
          $product =  Product::findOrfail($id);
-
         $cart = new Cart;
         $cart->product_id = $product->id;
         $cart->user_id = Auth::id();
