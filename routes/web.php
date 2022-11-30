@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -37,4 +38,10 @@ Route::get("/product/edit/{id}",[ProductController::class,'edit'])->name('produc
 Route::post("/product/update/{id}",[ProductController::class,'update'])->name('product.update')->middleware('auth');
 Route::post("/product/delete/{id}",[ProductController::class,'destroy'])->name('product.delete')->middleware('auth');
 
+//cart routes
 
+Route::get("/cart/add/{id}",[CartController::class,'addToCart'])->name('cart.addToCart')->middleware('auth');
+Route::get("/cart",[CartController::class,'index'])->name('cart.index')->middleware('auth');
+
+
+Route::get("/create",[CartController::class,'create'])->name('cart.create')->middleware('auth');

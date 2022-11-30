@@ -44,7 +44,7 @@
         <td>{{$product->discount}}</td>
         {{-- <td>{{number_format($product->quantity*($product->rate-$product->discount),2)}}</td>
          --}}
-         <td>{{number_format($product->rate - ($product->discount * $product->rate)/100,2)}}</td>
+         <td>{{number_format($product->quantity*($product->rate - ($product->discount * $product->rate)/100),2)}}</td>
         <td>{{$product->user->name}}</td>
 
         
@@ -67,10 +67,4 @@
 
 </div>
   </div>
-
-
-
-
-
-
   @endsection

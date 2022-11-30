@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content') 
+@if(Session::has("success"))
+    <div class="alert alert-success">
+      {{Session::get("success")}}
+    </div>
+ @endif
 
 <div class="row" >
  @foreach ($products as $product)
@@ -12,7 +17,7 @@
         <h5 class="card-title">{{ucfirst($product->pName)}}</h5>
         <h5 class="card-title">Rs {{number_format($product->rate,2)}}</h5>
         <h5 class="card-title">Rs {{number_format($product->discount,2)}}</h5>
-    <a href="#" class="btn btn-primary">Add To Cart</a>
+    <a href="{{route('cart.addToCart',$product->id)}}" class="btn btn-primary">Add To Cart</a>
       </div>
     </div>
 </div>
