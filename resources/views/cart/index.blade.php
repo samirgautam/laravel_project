@@ -26,6 +26,7 @@
     @php
     $i = 1;
     @endphp
+
     @foreach ($cart_items as $cart_item)
     <tr>
       <td>{{$i++}}</td>
@@ -35,18 +36,18 @@
       <td>{{$cart_item->discount}}</td>
       <td>{{$cart_item->total_amount}}</td>
       <td>{{$cart_item->net_amount}}</td>
-      <td class="d-flex justify-content-around">
+      <td>
         <form action="{{route('cart.delete',$cart_item->id)}}">
           @csrf
           <td> <button type="submit" class="btn btn-info" >Delete</button></td>
         </form>
       </td>
-    
     </tr>
     @endforeach
   </tbody>
 </table>
 
+<h4>Final Amount: {{ $cart_items->sum('net_amount') }}</h4>
  {{-- <h5 class="card-title">{{ucfirst($cart_item->product->pName)}}</h5>
 <div class="col-md-3" >
 <div class="card-group">

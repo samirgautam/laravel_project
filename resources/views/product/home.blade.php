@@ -17,7 +17,15 @@
         <h5 class="card-title">{{ucfirst($product->pName)}}</h5>
         <h5 class="card-title">Rs {{number_format($product->rate,2)}}</h5>
         <h5 class="card-title">Rs {{number_format($product->discount,2)}}</h5>
-    <a href="{{route('cart.addToCart',$product->id)}}" class="btn btn-primary">Add To Cart</a>
+        <form  method="get" action="{{route('cart.addToCart',$product->id)}}">
+          @csrf
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+      </form>
+     <form method="get" action="{{route('cart.buyNow',$product->id)}}">
+      @csrf
+      <button type="submit" class="btn btn-success">Buy Now</button>
+    </form>
+    {{-- <a href="{{route('cart.addToCart',$product->id)}}" class="btn btn-primary">Add To Cart</a> --}}
       </div>
     </div>
 </div>

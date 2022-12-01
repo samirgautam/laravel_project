@@ -113,7 +113,6 @@ class ProductController extends Controller
             "quantity" =>$request->quantity,
             "rate"=> $request->rate,
             "discount"=>$request->discount,
-      
         ]);
         if(!$product)
         {

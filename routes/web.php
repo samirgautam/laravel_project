@@ -40,8 +40,10 @@ Route::post("/product/delete/{id}",[ProductController::class,'destroy'])->name('
 
 //cart routes
 
-Route::get("/cart/add/{id}",[CartController::class,'addToCart'])->name('cart.addToCart')->middleware('auth');
 Route::get("/cart",[CartController::class,'index'])->name('cart.index')->middleware('auth');
+Route::get("/cart/add/{id}",[CartController::class,'addToCart'])->name('cart.addToCart')->middleware('auth');
+Route::get("/cart/buy/{id}",[CartController::class,'buyNow'])->name('cart.buyNow')->middleware('auth');
+
 
 
 Route::get("/create",[CartController::class,'create'])->name('cart.create')->middleware('auth');
