@@ -16,7 +16,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addToCart($id){
-         $product =  Product::findOrfail($id);
+        $product =  Product::findOrfail($id);
         $cart = new Cart;
         $cart->product_id = $product->id;
         $cart->user_id = Auth::id();
@@ -30,8 +30,7 @@ class CartController extends Controller
     }
     public function index()
     {
-        return view('cart.index',["cart_items"=>Cart::where('user_id',Auth::id())->with('product')->get()]);
-         
+        return view('cart.index',["cart_items"=>Cart::where('user_id',Auth::id())->with('product')->get()]);    
         // return view('cart.index',["products"=>Product::getData(true)]);
     }
 

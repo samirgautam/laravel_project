@@ -23,6 +23,7 @@ class Cart extends Model
     }
 
     public function product(){
+        //used in cart controller's index method
         return $this->belongsTo(Product::class);
     }
 
