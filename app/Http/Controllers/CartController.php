@@ -70,6 +70,27 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function increaseQuantity($id){
+        $cart = Cart::findOrfail($id);
+        $cart->quantity++;
+        $cart->total_amount = $cart->rate * $cart->quantity;
+        $cart->net_amount =($cart->rate - (($cart->rate * $cart->discount) /100))*$cart->quantity;
+        $cart->save();
+        return redirect()->route('cart.index');
+    }
+    public function decreaseQuantity($id){
+        $cart = Cart::findOrfail($id);
+        if($cart->quantity==1)
+        {
+            $cart->delete();
+            return redirect()->route('cart.index');
+        }
+        $cart->quantity--;
+        $cart->total_amount = $cart->rate * $cart->quantity;
+        $cart->net_amount =($cart->rate - (($cart->rate * $cart->discount) /100))*$cart->quantity;
+        $cart->save();
+        return redirect()->route('cart.index');
+    }
     public function store(Request $request)
     {
         //

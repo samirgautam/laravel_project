@@ -47,4 +47,6 @@ Route::get("/cart/buy/{id}",[CartController::class,'buyNow'])->name('cart.buyNow
 
 
 Route::get("/create",[CartController::class,'create'])->name('cart.create')->middleware('auth');
+Route::get("/cart/increase/{id}",[CartController::class,'increaseQuantity'])->name('cart.increaseQuantity')->middleware('auth');
+Route::get("/cart/decrease/{id}",[CartController::class,'decreaseQuantity'])->name('cart.decreaseQuantity')->middleware('auth');
 Route::get("/cart/delete/{id}",[CartController::class,'destroy'])->name('cart.delete')->middleware('auth');
