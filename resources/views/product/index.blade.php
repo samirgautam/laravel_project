@@ -35,7 +35,7 @@
       @php
           $i =0;
       @endphp
-      @foreach ($products as $product)
+      @foreach ($products as $product) 
       <tr>
         <th scope="row">{{++$i}}</th>
         <td>{{ucfirst($product->pName)}}</td>
@@ -54,13 +54,14 @@
             @csrf
             <td> <button type="submit" class="btn btn-info" >Edit</button></td>
           </form>
-  
+        </td>
+         <td>
           <form method="POST" action="{{route('product.delete',$product->id)}}">
             @csrf
             <td><button type="submit" class="btn btn-danger">Delete</button></td>
           </form>
-  
         </td>
+        
       </tr>
       @endforeach
     </tbody>
